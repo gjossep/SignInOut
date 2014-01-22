@@ -114,6 +114,7 @@ public class NewSignInOut {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				int grade = Integer.parseInt((String) gradeComboBox.getSelectedItem());
+				advisorBox.setModel(getAdvisors(grade));
 			}
 		});
 		gradeComboBox.setBounds(97, 119, 117, 20);
@@ -165,8 +166,7 @@ public class NewSignInOut {
 		textLastName.setBounds(98, 84, 396, 20);
 		frame.getContentPane().add(textLastName);
 	}
-	
-	
+
 	@SuppressWarnings("rawtypes")
 	private ComboBoxModel getAdvisors(int i) {
 		/*

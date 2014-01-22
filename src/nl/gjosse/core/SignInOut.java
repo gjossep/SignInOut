@@ -6,6 +6,7 @@ import nl.gjosse.mysql.MYSQL;
 public class SignInOut {
 	
 	public static void main(String[] args) {
+		FileHandler.createFolder();
 		MainWindow.start();
 		MYSQL.start();
 	}
