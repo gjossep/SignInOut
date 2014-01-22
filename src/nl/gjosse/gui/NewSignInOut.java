@@ -1,20 +1,22 @@
 package nl.gjosse.gui;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-
-import java.awt.Font;
-
 import javax.swing.JSeparator;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import nl.gjosse.core.EventHandler;
+import nl.gjosse.core.FileHandler;
 
 public class NewSignInOut {
 
@@ -28,9 +30,9 @@ public class NewSignInOut {
 	public static JFrame other;
 	private static JTextField textFirstName;
 	private static JTextField textReason;
-	private static JComboBox InOutBox;
-	private static JComboBox gradeComboBox;
-	private static JComboBox advisorBox;
+	private static JComboBox<?> InOutBox;
+	private static JComboBox<?> gradeComboBox;
+	private static JComboBox<?> advisorBox;
 	private static JTextField textLastName;
 	
 	
@@ -72,7 +74,7 @@ public class NewSignInOut {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frame = new JFrame();
 		frame.setLocation(other.getX(), other.getY());
@@ -105,12 +107,19 @@ public class NewSignInOut {
 		lblReason.setBounds(10, 215, 78, 24);
 		frame.getContentPane().add(lblReason);
 		
-		gradeComboBox = new JComboBox();
+		gradeComboBox = new JComboBox<Object>();
 		gradeComboBox.setModel(new DefaultComboBoxModel(new String[] {"9", "10", "11", "12"}));
+		gradeComboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int grade = Integer.parseInt((String) gradeComboBox.getSelectedItem());
+			}
+		});
 		gradeComboBox.setBounds(97, 119, 117, 20);
 		frame.getContentPane().add(gradeComboBox);
 		
-		InOutBox = new JComboBox();
+		InOutBox = new JComboBox<Object>();
 		InOutBox.setModel(new DefaultComboBoxModel(new String[] {"Signing In", "Signing Out"}));
 		InOutBox.setBounds(98, 180, 116, 20);
 		frame.getContentPane().add(InOutBox);
@@ -141,7 +150,8 @@ public class NewSignInOut {
 		lblAdvisor.setBounds(10, 145, 78, 24);
 		frame.getContentPane().add(lblAdvisor);
 		
-		advisorBox = new JComboBox();
+		advisorBox = new JComboBox<Object>();
+		advisorBox.setModel(getAdvisors(9));
 		advisorBox.setBounds(97, 147, 117, 20);
 		frame.getContentPane().add(advisorBox);
 		
@@ -157,6 +167,22 @@ public class NewSignInOut {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
+	private ComboBoxModel getAdvisors(int i) {
+		/*
+		 * Method to get all the advisors for one grade.
+		 * Pre: A grade number as parameter
+		 * Post: A ComboBoxModel with all the advisors for the grade.
+		 */
+		DefaultComboBoxModel model = null;
+		String[] array;
+		
+		array = FileHandler.getStringArray(i);
+		model = new DefaultComboBoxModel<String>(array);
+		
+		return model;
+	}
+
 	public static String getTextReason() {
 		return textReason.getText();
 	}

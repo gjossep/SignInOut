@@ -75,11 +75,25 @@ public class MainWindow {
 			new String[] {
 				"Last Name", "First Name", "Grade", "Advisor", "Time In/Out", "Date", "Reason"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(1).setPreferredWidth(104);
+		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(2).setPreferredWidth(46);
+		table.getColumnModel().getColumn(3).setResizable(false);
+		table.getColumnModel().getColumn(4).setResizable(false);
 		table.getColumnModel().getColumn(4).setPreferredWidth(76);
+		table.getColumnModel().getColumn(5).setResizable(false);
 		table.getColumnModel().getColumn(5).setPreferredWidth(69);
+		table.getColumnModel().getColumn(6).setResizable(false);
 		table.getColumnModel().getColumn(6).setPreferredWidth(107);
 		scrollPane.setViewportView(table);
 		

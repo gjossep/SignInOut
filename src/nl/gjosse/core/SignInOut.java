@@ -8,7 +8,6 @@ public class SignInOut {
 	public static void main(String[] args) {
 		MainWindow.start();
 		MYSQL.start();
-	
 	}
 	
 }
