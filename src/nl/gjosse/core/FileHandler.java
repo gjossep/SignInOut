@@ -31,7 +31,12 @@ public class FileHandler {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				toFind.createNewFile();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
