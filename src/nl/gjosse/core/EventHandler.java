@@ -9,6 +9,7 @@ import java.util.Date;
 
 import nl.gjosse.gui.NewSignInOut;
 import nl.gjosse.gui.Student;
+import nl.gjosse.mysql.MYSQL;
 
 public class EventHandler implements ActionListener {
 
@@ -16,8 +17,22 @@ public class EventHandler implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		String command = event.getActionCommand();
 		
+		
 		if(command.equalsIgnoreCase("submit")) {
-			Student student = new Student(NewSignInOut.getTextFirstName(),NewSignInOut.getTextLastName(), NewSignInOut.getGradeComboBox(), NewSignInOut.getAdvisorBox(), getDate(), getTime(), NewSignInOut.getInOutBox(), NewSignInOut.getTextReason());
+			String firstName = NewSignInOut.getTextFirstName();
+			String lastName = NewSignInOut.getTextLastName();
+			String reason = NewSignInOut.getTextReason();
+			
+			if((!firstName.equals("")) && (!lastName.equals("")) && (!reason.equals(""))) {
+				Student student = new Student(firstName,lastName, NewSignInOut.getGradeComboBox(), NewSignInOut.getAdvisorBox(), getDate(), getTime(), NewSignInOut.getInOutBox(), reason);
+				NewSignInOut.close();
+				
+				MYSQL.addStudent(student);
+				
+			} else {
+				NewSignInOut.error();
+			}
+		
 		}
 		
 	}

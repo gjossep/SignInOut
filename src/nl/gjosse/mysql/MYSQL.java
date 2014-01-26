@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import nl.gjosse.gui.Student;
+
 
 
 public class MYSQL {
@@ -29,6 +31,10 @@ public class MYSQL {
 	private static void tryConnection() throws SQLException {
 		con = DriverManager.getConnection(url, user, password);
 		System.out.println(con.isClosed());
+	}
+
+	public static void addStudent(Student student) {
+		
 	}
 
 }

@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -20,7 +21,7 @@ import nl.gjosse.core.FileHandler;
 
 public class NewSignInOut {
 
-	private JFrame frame;
+	private static JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -76,6 +77,10 @@ public class NewSignInOut {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
+		/* A method to inteleize all compants of the GUI
+		 * Pre: Nothing
+		 * Post: A GUI is created and prestend to the user.
+		 */
 		frame = new JFrame();
 		frame.setLocation(other.getX(), other.getY());
 		frame.setBounds(100, 100, 574, 342);
@@ -112,7 +117,10 @@ public class NewSignInOut {
 		gradeComboBox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				/*A method to register when the user clicks on the combobox
+				 *Pre: The event must be triggered.
+				 *Post: The correct model is set for the advisorBox using the grade.
+				 */				
 				int grade = Integer.parseInt((String) gradeComboBox.getSelectedItem());
 				advisorBox.setModel(getAdvisors(grade));
 			}
@@ -183,6 +191,19 @@ public class NewSignInOut {
 		return model;
 	}
 
+	public static void close() {
+		frame.dispose();
+	}
+	
+	public static void error() {
+		JOptionPane.showMessageDialog(frame,
+			    "Not all fields are filled out!",
+			    "Error",
+			    JOptionPane.ERROR_MESSAGE);
+	}
+	
+	
+	
 	public static String getTextReason() {
 		return textReason.getText();
 	}
@@ -201,4 +222,6 @@ public class NewSignInOut {
 	public static String getTextLastName() {
 		return textLastName.getText();
 	}
+
+
 }

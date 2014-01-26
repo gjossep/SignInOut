@@ -24,7 +24,7 @@ import javax.swing.DefaultComboBoxModel;
 
 public class MainWindow {
 
-	private JFrame frame;
+	public static JFrame frame;
 	private JTable table;
 	private JTextField textField;
 
@@ -73,9 +73,8 @@ public class MainWindow {
 		table = new JTable();
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Doe", "John", "12", "Mr. Bob", "9:15 IN", "16 Jan 2014", "Embassy"},
-				{"Smith", "Jane", "10", "Mrs. Bob", "10:30 OUT", "16 Jan 2014", "Doctor's"},
+			new Object[][] {,
+					//No default things in model
 			},
 			new String[] {
 				"Last Name", "First Name", "Grade", "Advisor", "Time In/Out", "Date", "Reason"
@@ -112,11 +111,11 @@ public class MainWindow {
 		JLabel lblNewLabel = new JLabel("Sign In/Out");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(36, 0, 140, 24);
+		lblNewLabel.setBounds(36, 1, 140, 24);
 		userInputPanel.add(lblNewLabel);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 23, 195, 10);
+		separator.setBounds(10, 25, 195, 10);
 		userInputPanel.add(separator);
 		
 		JButton btnSignInout = new JButton("Sign In/Out");
@@ -128,11 +127,11 @@ public class MainWindow {
 				
 			}
 		});
-		btnSignInout.setBounds(46, 35, 113, 23);
+		btnSignInout.setBounds(46, 36, 113, 23);
 		userInputPanel.add(btnSignInout);
 		
 		JButton btnEditData = new JButton("Edit data");
-		btnEditData.setBounds(46, 67, 113, 23);
+		btnEditData.setBounds(46, 68, 113, 23);
 		userInputPanel.add(btnEditData);
 		
 		JLabel lblSort = new JLabel("Sort:");
@@ -142,16 +141,16 @@ public class MainWindow {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Last Name", "First Name", "Grade", "Advisor", "Time In/Out", "Date", "Reason"}));
-		comboBox.setBounds(66, 218, 128, 20);
+		comboBox.setBounds(66, 219, 128, 20);
 		userInputPanel.add(comboBox);
 		
 		JLabel lblSearch = new JLabel("Search:");
 		lblSearch.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblSearch.setBounds(10, 254, 46, 14);
+		lblSearch.setBounds(10, 255, 46, 14);
 		userInputPanel.add(lblSearch);
 		
 		textField = new JTextField();
-		textField.setBounds(66, 251, 128, 20);
+		textField.setBounds(66, 252, 128, 20);
 		userInputPanel.add(textField);
 		textField.setColumns(10);
 	}
