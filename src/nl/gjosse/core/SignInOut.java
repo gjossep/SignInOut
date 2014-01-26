@@ -19,5 +19,12 @@ public class SignInOut {
 			JOptionPane.showMessageDialog(MainWindow.frame,"Some Advisor files are still at default. Please fill them in! \n They are located at: "+FileHandler.source.getAbsolutePath(),"Warning", JOptionPane.WARNING_MESSAGE);
 		}
 	}
+
+	public static void error(int code) {
+		if(code == 1) {
+			JOptionPane.showMessageDialog(MainWindow.frame,"Something went wrong with connecting to the database. \n Quiting...","Link Fail", JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+		}		
+	}
 	
 }
