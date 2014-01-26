@@ -17,15 +17,22 @@ import javax.swing.JButton;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.print.PrinterException;
+import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 
+import org.jdesktop.swingx.JXTable;
+
+import nl.gjosse.mysql.MYSQL;
+
 public class MainWindow {
 
 	public static JFrame frame;
-	private JTable table;
+	private static JXTable table;
 	private JTextField textField;
 
 	/**
@@ -46,16 +53,22 @@ public class MainWindow {
 
 	/**
 	 * Create the application.
+	 * @throws IOException 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public MainWindow() {
+	public MainWindow() throws ClassNotFoundException, SQLException, IOException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws IOException 
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
 	@SuppressWarnings("serial")
-	private void initialize() {
+	private void initialize() throws ClassNotFoundException, SQLException, IOException {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,35 +83,9 @@ public class MainWindow {
 		scrollPane.setBounds(0, 0, 570, 462);
 		tablePanel.add(scrollPane);
 		
-		table = new JTable();
+		table = new JXTable();
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {,
-					//No default things in model
-			},
-			new String[] {
-				"Last Name", "First Name", "Grade", "Advisor", "Time In/Out", "Date", "Reason"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(1).setResizable(false);
-		table.getColumnModel().getColumn(1).setPreferredWidth(104);
-		table.getColumnModel().getColumn(2).setResizable(false);
-		table.getColumnModel().getColumn(2).setPreferredWidth(46);
-		table.getColumnModel().getColumn(3).setResizable(false);
-		table.getColumnModel().getColumn(4).setResizable(false);
-		table.getColumnModel().getColumn(4).setPreferredWidth(76);
-		table.getColumnModel().getColumn(5).setResizable(false);
-		table.getColumnModel().getColumn(5).setPreferredWidth(69);
-		table.getColumnModel().getColumn(6).setResizable(false);
-		table.getColumnModel().getColumn(6).setPreferredWidth(107);
+		table.setModel(MYSQL.getModel());
 		scrollPane.setViewportView(table);
 		
 		
@@ -121,7 +108,7 @@ public class MainWindow {
 		JButton btnSignInout = new JButton("Sign In/Out");
 		btnSignInout.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
+			public void mouseReleased(MouseEvent e) {
 				//New sign in/out
 				NewSignInOut.start(frame);
 				
@@ -131,6 +118,16 @@ public class MainWindow {
 		userInputPanel.add(btnSignInout);
 		
 		JButton btnEditData = new JButton("Edit data");
+		btnEditData.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				try {
+					table.print();
+				} catch (PrinterException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnEditData.setBounds(46, 68, 113, 23);
 		userInputPanel.add(btnEditData);
 		
@@ -154,4 +151,9 @@ public class MainWindow {
 		userInputPanel.add(textField);
 		textField.setColumns(10);
 	}
+
+	public static void setModel() throws ClassNotFoundException, SQLException, IOException {
+		table.setModel(MYSQL.getModel());
+	}
+	
 }

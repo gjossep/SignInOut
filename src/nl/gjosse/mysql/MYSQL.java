@@ -2,9 +2,16 @@ package nl.gjosse.mysql;
 
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import nl.gjosse.core.SignInOut;
+import nl.gjosse.gui.MainWindow;
 import nl.gjosse.gui.Student;
 
 
@@ -48,10 +55,51 @@ public class MYSQL {
 		try {
 			sql.standardQuery(query);
 			System.out.println("SQL Query sucessfull!");
+			MainWindow.setModel();
 		} catch (ClassNotFoundException | SQLException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 
+	public static TableModel getModel() throws SQLException, ClassNotFoundException, IOException {
+		sql.initialise();
+		 ResultSet rs = sql.sqlQuery("select * from students;");  
+         ResultSetMetaData md = rs.getMetaData();  
+         int columnCount = md.getColumnCount();  
+         Vector<String> columns = new Vector<String>(columnCount);  
+
+       //store column names  
+			columns.add("Last Name"); 
+			columns.add("First Name"); 
+			columns.add("Grade"); 
+			columns.add("Advisor"); 
+			columns.add("In or Out"); 
+			columns.add("Time In/Out"); 
+			columns.add("Date"); 
+			columns.add("Reason");
+           
+       Vector<Vector<Object>> data = new Vector<Vector<Object>>();  
+       Vector<Object> row;  
+                
+         while (rs.next()) {  
+        	 row = new Vector<Object>(columnCount);  
+                  row.add(rs.getObject("lastName")); 
+                  row.add(rs.getObject("firstName"));
+                  row.add(rs.getObject("grade"));
+                  row.add(rs.getObject("advisor"));
+                  row.add(rs.getObject("InOrOut"));
+                  row.add(rs.getObject("time"));
+                  row.add(rs.getObject("date"));
+                  row.add(rs.getObject("reason"));
+              data.add(row);  
+              
+         }  
+         DefaultTableModel tableModel = new DefaultTableModel(data, columns);  
+         
+		return tableModel;
+	}
+
+	
 }
