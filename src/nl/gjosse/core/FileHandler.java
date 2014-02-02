@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import nl.gjosse.gui.Student;
+
 public class FileHandler {
 
 	public static File source = new File(System.getProperty("user.home"),"SignInOut");
@@ -19,6 +21,7 @@ public class FileHandler {
 		}
 	}
 	
+
 	
 	public static String[] getStringArray(int i) {
 		File toFind = new File(source, (i +".txt"));

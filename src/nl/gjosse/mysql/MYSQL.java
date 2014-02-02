@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.UUID;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
@@ -37,7 +38,7 @@ public class MYSQL {
 
 	private static void checkTable() throws ClassNotFoundException, SQLException, IOException {
 		if(!(sql.doesTableExist("students"))) {
-			String query = "CREATE TABLE students(ID int NOT NULL AUTO_INCREMENT, lastName varchar(255), firstName varchar(255), grade varchar(255), advisor varchar(255), date varchar(255), time varchar(255), InOrOut varchar(255), reason varchar(255), PRIMARY KEY (ID))";
+			String query = "CREATE TABLE students(ID int NOT NULL AUTO_INCREMENT, lastName varchar(255), firstName varchar(255), grade varchar(255), advisor varchar(255), date varchar(255), time varchar(255), InOrOut varchar(255), reason varchar(255),uuid varchar(255), PRIMARY KEY (ID))";
 			sql.standardQuery(query);
 		} else {
 			System.out.println("Database already exists");
@@ -50,7 +51,7 @@ public class MYSQL {
 	}
 
 	public static void addStudent(Student s) {
-		String query = "INSERT INTO students VALUES (0,'"+s.firstName+"', '"+s.lastName+"', '"+s.grade+"', '"+s.advisor+"', '"+s.date+"', '"+s.time+"', '"+s.InOut+"', '"+s.reason+"');";
+		String query = "INSERT INTO students VALUES (0,'"+s.lastName+"', '"+s.firstName+"', '"+s.grade+"', '"+s.advisor+"', '"+s.date+"', '"+s.time+"', '"+s.InOut+"', '"+s.reason+"', '"+s.getID().toString()+"');";
 		System.out.println(query);
 		try {
 			sql.standardQuery(query);
@@ -62,6 +63,58 @@ public class MYSQL {
 		}
 	}
 	
+	public static void editStudent(Student s) {
+		String query = "UPDATE students SET lastName='"+s.lastName+"', firstName='"+s.firstName+"', grade='"+s.grade+"', advisor='"+s.advisor+"', InOrOut='"+s.InOut+"', reason='"+s.reason+"' WHERE uuid='"+s.getID().toString()+"';";
+		System.out.println(query);
+		try {
+			sql.standardQuery(query);
+			System.out.println("SQL Query sucessfull!");
+			MainWindow.setModel();
+		} catch (ClassNotFoundException | SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static UUID getID(String firstName, String lastName) {
+		String value = null;
+		String query = "SELECT * FROM students;";
+		System.out.println(query);
+		try {
+			ResultSet result = sql.sqlQuery(query);
+			while(result.next()) {
+				String databaseLast = result.getString(2);
+				String databaseFirst = result.getString(3);
+				if(databaseFirst.equals(firstName) && databaseLast.equals(lastName)) {
+					value = result.getString(10);
+				}
+			}
+			System.out.println("SQL Query sucessfull! "+value);
+		} catch (ClassNotFoundException | SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		UUID id = UUID.fromString(value);
+		return id;
+		
+	}
+	
+	public static void removeStudent(UUID id) {
+		String query = "DELETE FROM students WHERE uuid='"+id+"';";
+		System.out.println(query);
+		
+		try {
+			sql.standardQuery(query);
+			System.out.println("SQL Query sucessfull!");
+			MainWindow.setModel();
+		} catch (ClassNotFoundException | SQLException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 
 	public static TableModel getModel() throws SQLException, ClassNotFoundException, IOException {
 		sql.initialise();
@@ -76,7 +129,7 @@ public class MYSQL {
 			columns.add("Grade"); 
 			columns.add("Advisor"); 
 			columns.add("In or Out"); 
-			columns.add("Time In/Out"); 
+			columns.add("Time"); 
 			columns.add("Date"); 
 			columns.add("Reason");
            
@@ -100,6 +153,8 @@ public class MYSQL {
          
 		return tableModel;
 	}
+
+
 
 	
 }

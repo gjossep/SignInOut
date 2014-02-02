@@ -4,6 +4,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -16,8 +20,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import nl.gjosse.core.EventHandler;
 import nl.gjosse.core.FileHandler;
+import nl.gjosse.mysql.MYSQL;
 
 public class NewSignInOut {
 
@@ -36,6 +40,11 @@ public class NewSignInOut {
 	private static JComboBox<?> advisorBox;
 	private static JTextField textLastName;
 	
+	public static String time;
+	public static String date;
+	public static UUID id;
+	public static boolean updated = false;
+
 	
 	public static void start(JFrame frame2) {
 		other = frame2;
@@ -51,18 +60,33 @@ public class NewSignInOut {
 		});
 	}
 	
-	public static void start(JFrame frame2, Student student) {
+	public static void start(JFrame frame2, final Student student) {
 		other = frame2;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					NewSignInOut window = new NewSignInOut();
 					window.frame.setVisible(true);
+					
+					textFirstName.setText(student.getFirstName());
+					textLastName.setText(student.getLastName());
+					gradeComboBox.setSelectedItem(student.grade);
+					advisorBox.setSelectedItem(student.advisor);
+					InOutBox.setSelectedItem(student.InOut);
+					time = student.getTime();
+					date = student.getDate();
+					textReason.setText(student.getReason());
+					id = student.getID();
+					System.out.println(id);
+					updated = true;
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		
+		
 	}
 
 	/**
@@ -140,8 +164,32 @@ public class NewSignInOut {
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(234, 250, 89, 23);
-		btnSubmit.setActionCommand("submit");
-		btnSubmit.addActionListener(new EventHandler());
+		btnSubmit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String firstName = NewSignInOut.getTextFirstName();
+				String lastName = NewSignInOut.getTextLastName();
+				String reason = NewSignInOut.getTextReason();
+				
+				if((!firstName.equals("")) && (!lastName.equals("")) && (!reason.equals(""))) {
+					if(!updated) {
+						Student student = new Student(firstName,lastName, NewSignInOut.getGradeComboBox(), NewSignInOut.getAdvisorBox(), getDate(), getTime(), NewSignInOut.getInOutBox(), reason);
+						NewSignInOut.close();
+						
+						MYSQL.addStudent(student);
+					} else {
+						Student student = new Student(firstName,lastName, NewSignInOut.getGradeComboBox(), NewSignInOut.getAdvisorBox(), date, time, NewSignInOut.getInOutBox(), reason, id);
+						NewSignInOut.close();
+						
+						MYSQL.editStudent(student);
+					}
+					
+				} else {
+					NewSignInOut.error();
+				}
+			}
+		});
 		frame.getContentPane().add(btnSubmit);
 		
 		JLabel lblNewLabel_1 = new JLabel("Sign In/Out");
@@ -195,6 +243,25 @@ public class NewSignInOut {
 		frame.dispose();
 	}
 	
+	private String getDateAndTime() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		//get current date time with Date()
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
+
+	private String getTime() {
+		String dateAndTime = getDateAndTime();
+		String time = dateAndTime.substring(11);
+		return time;
+	}
+	
+	private String getDate() {
+		String dateAndTime = getDateAndTime();
+		String time = dateAndTime.substring(0, 10);
+		return time;
+	}
+	
 	public static void error() {
 		JOptionPane.showMessageDialog(frame,
 			    "Not all fields are filled out!",
@@ -222,6 +289,9 @@ public class NewSignInOut {
 	public static String getTextLastName() {
 		return textLastName.getText();
 	}
+
+	
+	
 
 
 }
