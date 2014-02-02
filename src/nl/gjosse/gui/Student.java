@@ -2,6 +2,8 @@ package nl.gjosse.gui;
 
 import java.util.UUID;
 
+/**
+ */
 public class Student {
 	
 	public String firstName;
@@ -14,6 +16,17 @@ public class Student {
 	public String advisor;
 	public UUID id;
 	
+	/**
+	 * Constructor for Student.
+	 * @param firstName String
+	 * @param lastName String
+	 * @param grade int
+	 * @param advisor String
+	 * @param date String
+	 * @param time String
+	 * @param InOut String
+	 * @param reason String
+	 */
 	public Student (String firstName, String lastName, int grade, String advisor ,String date, String time, String InOut, String reason) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -36,6 +49,18 @@ public class Student {
 	    this.id = UUID.randomUUID();
 	}
 	
+	/**
+	 * Constructor for Student.
+	 * @param firstName String
+	 * @param lastName String
+	 * @param grade int
+	 * @param advisor String
+	 * @param date String
+	 * @param time String
+	 * @param InOut String
+	 * @param reason String
+	 * @param id UUID
+	 */
 	public Student (String firstName, String lastName, int grade, String advisor ,String date, String time, String InOut, String reason, UUID id) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -59,62 +84,122 @@ public class Student {
 
 	}
 
+	/**
+	 * Method getFirstName.
+	 * @return String
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
+	/**
+	 * Method setFirstName.
+	 * @param name String
+	 */
 	public void setFirstName(String name) {
 		this.firstName = name;
 	}
 	
+	/**
+	 * Method getLastName.
+	 * @return String
+	 */
 	public String getLastName() {
 		return lastName;
 	}
 
+	/**
+	 * Method setLastName.
+	 * @param name String
+	 */
 	public void setLastName(String name) {
 		this.lastName = name;
 	}
 
+	/**
+	 * Method getReason.
+	 * @return String
+	 */
 	public String getReason() {
 		return reason;
 	}
 
+	/**
+	 * Method setReason.
+	 * @param reason String
+	 */
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
 
+	/**
+	 * Method getDate.
+	 * @return String
+	 */
 	public String getDate() {
 		return date;
 	}
 
+	/**
+	 * Method setDate.
+	 * @param date String
+	 */
 	public void setDate(String date) {
 		this.date = date;
 	}
 
+	/**
+	 * Method getTime.
+	 * @return String
+	 */
 	public String getTime() {
 		return time;
 	}
 
+	/**
+	 * Method setTime.
+	 * @param time String
+	 */
 	public void setTime(String time) {
 		this.time = time;
 	}
 
+	/**
+	 * Method getInOut.
+	 * @return String
+	 */
 	public String getInOut() {
 		return InOut;
 	}
 
+	/**
+	 * Method setInOut.
+	 * @param inOut String
+	 */
 	public void setInOut(String inOut) {
 		InOut = inOut;
 	}
 
+	/**
+	 * Method getGrade.
+	 * @return int
+	 */
 	public int getGrade() {
 		return grade;
 	}
 
+	/**
+	 * Method setGrade.
+	 * @param grade int
+	 */
 	public void setGrade(int grade) {
 		this.grade = grade;
 	}
 
+	/**
+	 * Method getID.
+	 * @return UUID
+	 */
 	public UUID getID() {
 		return id;
 	}

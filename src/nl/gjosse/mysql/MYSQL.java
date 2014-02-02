@@ -17,6 +17,8 @@ import nl.gjosse.gui.Student;
 
 
 
+/**
+ */
 public class MYSQL {
 
     static String URL = "db4free.net:3306";
@@ -36,6 +38,12 @@ public class MYSQL {
 		}
 	}
 
+	/**
+	 * Method checkTable.
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	private static void checkTable() throws ClassNotFoundException, SQLException, IOException {
 		if(!(sql.doesTableExist("students"))) {
 			String query = "CREATE TABLE students(ID int NOT NULL AUTO_INCREMENT, lastName varchar(255), firstName varchar(255), grade varchar(255), advisor varchar(255), date varchar(255), time varchar(255), InOrOut varchar(255), reason varchar(255),uuid varchar(255), PRIMARY KEY (ID))";
@@ -45,11 +53,19 @@ public class MYSQL {
 		}
 	} 
 
+	/**
+	 * Method tryConnection.
+	 * @throws Exception
+	 */
 	private static void tryConnection() throws Exception {
 		boolean initialise = sql.initialise();
 		System.out.println("Connection "+initialise);
 	}
 
+	/**
+	 * Method addStudent.
+	 * @param s Student
+	 */
 	public static void addStudent(Student s) {
 		String query = "INSERT INTO students VALUES (0,'"+s.lastName+"', '"+s.firstName+"', '"+s.grade+"', '"+s.advisor+"', '"+s.date+"', '"+s.time+"', '"+s.InOut+"', '"+s.reason+"', '"+s.getID().toString()+"');";
 		System.out.println(query);
@@ -63,6 +79,10 @@ public class MYSQL {
 		}
 	}
 	
+	/**
+	 * Method editStudent.
+	 * @param s Student
+	 */
 	public static void editStudent(Student s) {
 		String query = "UPDATE students SET lastName='"+s.lastName+"', firstName='"+s.firstName+"', grade='"+s.grade+"', advisor='"+s.advisor+"', InOrOut='"+s.InOut+"', reason='"+s.reason+"' WHERE uuid='"+s.getID().toString()+"';";
 		System.out.println(query);
@@ -76,6 +96,12 @@ public class MYSQL {
 		}
 	}
 	
+	/**
+	 * Method getID.
+	 * @param firstName String
+	 * @param lastName String
+	 * @return UUID
+	 */
 	public static UUID getID(String firstName, String lastName) {
 		String value = null;
 		String query = "SELECT * FROM students;";
@@ -100,6 +126,10 @@ public class MYSQL {
 		
 	}
 	
+	/**
+	 * Method removeStudent.
+	 * @param id UUID
+	 */
 	public static void removeStudent(UUID id) {
 		String query = "DELETE FROM students WHERE uuid='"+id+"';";
 		System.out.println(query);
@@ -116,6 +146,13 @@ public class MYSQL {
 	}
 
 
+	/**
+	 * Method getModel.
+	 * @return TableModel
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public static TableModel getModel() throws SQLException, ClassNotFoundException, IOException {
 		sql.initialise();
 		 ResultSet rs = sql.sqlQuery("select * from students;");  

@@ -19,17 +19,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 import nl.gjosse.core.FileHandler;
 import nl.gjosse.mysql.MYSQL;
 
+/**
+ */
 public class NewSignInOut {
 
 	private static JFrame frame;
 
 	/**
 	 * Launch the application.
-	 * @param frame2 
+	
 	 */
 	
 	public static JFrame other;
@@ -46,13 +49,18 @@ public class NewSignInOut {
 	public static boolean updated = false;
 
 	
+	/**
+	 * Method start.
+	 * @param frame2 JFrame
+	 */
 	public static void start(JFrame frame2) {
 		other = frame2;
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					NewSignInOut window = new NewSignInOut();
-					window.frame.setVisible(true);
+					NewSignInOut.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -60,13 +68,19 @@ public class NewSignInOut {
 		});
 	}
 	
+	/**
+	 * Method start.
+	 * @param frame2 JFrame
+	 * @param student Student
+	 */
 	public static void start(JFrame frame2, final Student student) {
 		other = frame2;
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					NewSignInOut window = new NewSignInOut();
-					window.frame.setVisible(true);
+					NewSignInOut.frame.setVisible(true);
 					
 					textFirstName.setText(student.getFirstName());
 					textLastName.setText(student.getLastName());
@@ -108,7 +122,7 @@ public class NewSignInOut {
 		frame = new JFrame();
 		frame.setLocation(other.getX(), other.getY());
 		frame.setBounds(100, 100, 574, 342);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblName = new JLabel("First Name:");
@@ -223,6 +237,11 @@ public class NewSignInOut {
 		frame.getContentPane().add(textLastName);
 	}
 
+	/**
+	 * Method getAdvisors.
+	 * @param i int
+	 * @return ComboBoxModel
+	 */
 	@SuppressWarnings("rawtypes")
 	private ComboBoxModel getAdvisors(int i) {
 		/*
@@ -243,6 +262,10 @@ public class NewSignInOut {
 		frame.dispose();
 	}
 	
+	/**
+	 * Method getDateAndTime.
+	 * @return String
+	 */
 	private String getDateAndTime() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		//get current date time with Date()
@@ -250,12 +273,20 @@ public class NewSignInOut {
 		return dateFormat.format(date);
 	}
 
+	/**
+	 * Method getTime.
+	 * @return String
+	 */
 	private String getTime() {
 		String dateAndTime = getDateAndTime();
 		String time = dateAndTime.substring(11);
 		return time;
 	}
 	
+	/**
+	 * Method getDate.
+	 * @return String
+	 */
 	private String getDate() {
 		String dateAndTime = getDateAndTime();
 		String time = dateAndTime.substring(0, 10);
@@ -271,21 +302,45 @@ public class NewSignInOut {
 	
 	
 	
+	/**
+	 * Method getTextReason.
+	 * @return String
+	 */
 	public static String getTextReason() {
 		return textReason.getText();
 	}
+	/**
+	 * Method getTextFirstName.
+	 * @return String
+	 */
 	public static String getTextFirstName() {
 		return textFirstName.getText();
 	}
+	/**
+	 * Method getInOutBox.
+	 * @return String
+	 */
 	public static String getInOutBox() {
 		return InOutBox.getSelectedItem().toString();
 	}
+	/**
+	 * Method getGradeComboBox.
+	 * @return int
+	 */
 	public static int getGradeComboBox() {
 		return Integer.parseInt(gradeComboBox.getSelectedItem().toString());
 	}
+	/**
+	 * Method getAdvisorBox.
+	 * @return String
+	 */
 	public static String getAdvisorBox() {
 		return advisorBox.getSelectedItem().toString();
 	}
+	/**
+	 * Method getTextLastName.
+	 * @return String
+	 */
 	public static String getTextLastName() {
 		return textLastName.getText();
 	}

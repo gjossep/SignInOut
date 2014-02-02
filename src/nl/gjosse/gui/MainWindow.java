@@ -24,6 +24,8 @@ import nl.gjosse.mysql.MYSQL;
 
 import org.jdesktop.swingx.JXTable;
 
+/**
+ */
 public class MainWindow {
 
 	public static JFrame frame;
@@ -35,10 +37,11 @@ public class MainWindow {
 	 */
 	public static void start() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					MainWindow window = new MainWindow();
-					window.frame.setVisible(true);
+					MainWindow.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -48,20 +51,20 @@ public class MainWindow {
 
 	/**
 	 * Create the application.
-	 * @throws IOException 
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
+	
+	
+	
+	 * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  */
 	public MainWindow() throws ClassNotFoundException, SQLException, IOException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
-	 * @throws IOException 
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
+	
+	
+	
+	 * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  */
 	@SuppressWarnings({ "serial", "unchecked" })
 	private void initialize() throws ClassNotFoundException, SQLException, IOException {
 		frame = new JFrame();
@@ -194,6 +197,10 @@ public class MainWindow {
 		userInputPanel.add(btnSearch);
 	}
 
+	/**
+	 * Method searchTable.
+	 * @param toFind String
+	 */
 	protected void searchTable(String toFind) {
 		for(int i = 0; i<table.getRowCount(); i++)
 		{
@@ -205,6 +212,12 @@ public class MainWindow {
 		
 	}
 
+	/**
+	 * Method setModel.
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	public static void setModel() throws ClassNotFoundException, SQLException, IOException {
 		table.setModel(MYSQL.getModel());
 	}

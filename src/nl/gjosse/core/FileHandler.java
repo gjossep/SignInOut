@@ -9,8 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import nl.gjosse.gui.Student;
-
+/**
+ */
 public class FileHandler {
 
 	public static File source = new File(System.getProperty("user.home"),"SignInOut");
@@ -23,6 +23,11 @@ public class FileHandler {
 	
 
 	
+	/**
+	 * Method getStringArray.
+	 * @param i int
+	 * @return String[]
+	 */
 	public static String[] getStringArray(int i) {
 		File toFind = new File(source, (i +".txt"));
 		ArrayList<String> array = new ArrayList<String>();
@@ -59,6 +64,11 @@ public class FileHandler {
 		return (arrayListToArray(array));
 	}
 
+	/**
+	 * Method arrayListToArray.
+	 * @param array ArrayList<String>
+	 * @return String[]
+	 */
 	public static String[] arrayListToArray(ArrayList<String> array) {
 		String[] stringArray = new String[array.size()];
 		

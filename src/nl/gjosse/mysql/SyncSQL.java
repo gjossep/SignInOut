@@ -12,6 +12,8 @@ import java.sql.SQLException;
  * No credit to Gjosse
  */
 
+/**
+ */
 public class SyncSQL extends SQLOperations {
 
 	private String host, database, username, password;
@@ -19,6 +21,13 @@ public class SyncSQL extends SQLOperations {
 	private Connection connection;
 	private File databaseFile;
 
+	/**
+	 * Constructor for SyncSQL.
+	 * @param host String
+	 * @param database String
+	 * @param username String
+	 * @param password String
+	 */
 	public SyncSQL(String host, String database, String username, String password) {
 		this.host = host;
 		this.database = database;
@@ -27,6 +36,10 @@ public class SyncSQL extends SQLOperations {
 		this.schema = SCHEMA.MySQL;
 	}
 
+	/**
+	 * Constructor for SyncSQL.
+	 * @param databaseFile File
+	 */
 	public SyncSQL(File databaseFile) {
 		this.databaseFile = databaseFile;
 		this.schema = SCHEMA.SQLite;
@@ -35,10 +48,10 @@ public class SyncSQL extends SQLOperations {
 	/**
 	 * Reopens the SQL connection if it is closed. This is invoked upon every
 	 * query.
-	 * @throws IOException 
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
+	
+	
+	
+	 * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  */
 	public void refreshConnection() throws ClassNotFoundException, SQLException, IOException {
 		if (connection == null) {
 			initialise();
@@ -47,8 +60,8 @@ public class SyncSQL extends SQLOperations {
 
 	/**
 	 * Manually close the connection.
-	 * @throws SQLException 
-	 */
+	
+	 * @throws SQLException  */
 	public void closeConnection() throws SQLException {
 			this.connection.close();
 	}
@@ -57,11 +70,12 @@ public class SyncSQL extends SQLOperations {
 	 * Initialise a new connection. This will automatically create the database
 	 * file if you are using SQLite and it doesn't already exist.
 	 * 
-	 * @return
-	 * @throws ClassNotFoundException 
-	 * @throws SQLException 
-	 * @throws IOException 
-	 */
+	
+	
+	
+	
+	 * @return boolean
+	 * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  */
 	public boolean initialise() throws ClassNotFoundException, SQLException, IOException {
 		if (schema == SCHEMA.MySQL) {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -82,9 +96,10 @@ public class SyncSQL extends SQLOperations {
 	 * UPDATE, CREATE TABLE...
 	 * 
 	 * @param query
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
-	 */
+	
+	
+	 * @throws SQLException
+	 * @throws ClassNotFoundException  * @throws IOException  */
 	public void standardQuery(String query) throws SQLException, ClassNotFoundException, IOException {
 		this.refreshConnection();
 		super.standardQuery(query, this.connection);
@@ -93,11 +108,11 @@ public class SyncSQL extends SQLOperations {
 	/**
 	 * Check whether a field/entry exists in a database.
 	 * @param query
-	 * @return Whether or not a result has been found in the query.
-	 * @throws SQLException
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
-	 */
+	
+	
+	
+	
+	 * @return Whether or not a result has been found in the query. * @throws SQLException * @throws ClassNotFoundException  * @throws IOException  */
 	public boolean existanceQuery(String query) throws SQLException, ClassNotFoundException, IOException {
 		this.refreshConnection();
 		return super.sqlQuery(query, this.connection).next();
@@ -111,10 +126,11 @@ public class SyncSQL extends SQLOperations {
 	 * -----
 	 * 
 	 * @param query
-	 * @return ResultSet
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
-	 */
+	
+	
+	
+	 * @return ResultSet * @throws SQLException
+	 * @throws ClassNotFoundException  * @throws IOException  */
 	public ResultSet sqlQuery(String query) throws SQLException, ClassNotFoundException, IOException {
 		this.refreshConnection();
 		return super.sqlQuery(query, this.connection);
@@ -124,10 +140,12 @@ public class SyncSQL extends SQLOperations {
 	 * Check whether the table name exists.
 	 * 
 	 * @param table
-	 * @return
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
-	 */
+	
+	
+	
+	 * @return boolean
+	 * @throws SQLException
+	 * @throws ClassNotFoundException  * @throws IOException  */
 	public boolean doesTableExist(String table) throws SQLException, ClassNotFoundException, IOException {
 		this.refreshConnection();
 		return super.checkTable(table, this.connection);
