@@ -38,9 +38,9 @@ public class NewSignInOut {
 	public static JFrame other;
 	private static JTextField textFirstName;
 	private static JTextField textReason;
-	private static JComboBox<?> InOutBox;
-	private static JComboBox<?> gradeComboBox;
-	private static JComboBox<?> advisorBox;
+	private static JComboBox InOutBox;
+	private static JComboBox gradeComboBox;
+	private static JComboBox advisorBox;
 	private static JTextField textLastName;
 	
 	public static String time;
@@ -150,7 +150,7 @@ public class NewSignInOut {
 		lblReason.setBounds(10, 215, 78, 24);
 		frame.getContentPane().add(lblReason);
 		
-		gradeComboBox = new JComboBox<Object>();
+		gradeComboBox = new JComboBox();
 		gradeComboBox.setModel(new DefaultComboBoxModel(new String[] {"9", "10", "11", "12"}));
 		gradeComboBox.addActionListener(new ActionListener() {
 			@Override
@@ -166,7 +166,7 @@ public class NewSignInOut {
 		gradeComboBox.setBounds(97, 119, 117, 20);
 		frame.getContentPane().add(gradeComboBox);
 		
-		InOutBox = new JComboBox<Object>();
+		InOutBox = new JComboBox();
 		InOutBox.setModel(new DefaultComboBoxModel(new String[] {"Signing In", "Signing Out"}));
 		InOutBox.setBounds(98, 180, 116, 20);
 		frame.getContentPane().add(InOutBox);
@@ -221,7 +221,7 @@ public class NewSignInOut {
 		lblAdvisor.setBounds(10, 145, 78, 24);
 		frame.getContentPane().add(lblAdvisor);
 		
-		advisorBox = new JComboBox<Object>();
+		advisorBox = new JComboBox();
 		advisorBox.setModel(getAdvisors(9));
 		advisorBox.setBounds(97, 147, 117, 20);
 		frame.getContentPane().add(advisorBox);
@@ -253,7 +253,7 @@ public class NewSignInOut {
 		String[] array;
 		
 		array = FileHandler.getStringArray(i);
-		model = new DefaultComboBoxModel<String>(array);
+		model = new DefaultComboBoxModel(array);
 		
 		return model;
 	}

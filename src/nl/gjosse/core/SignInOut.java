@@ -14,10 +14,10 @@ public class SignInOut {
 	 * @param args String[]
 	 */
 	public static void main(String[] args) {
+		MYSQL.start();
 		MainWindow.start();
 		FileHandler.createFolder();
 		FileHandler.createFiles();
-		MYSQL.start();
 	}
 	
 	/**

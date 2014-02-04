@@ -73,7 +73,13 @@ public class MYSQL {
 			sql.standardQuery(query);
 			System.out.println("SQL Query sucessfull!");
 			MainWindow.setModel();
-		} catch (ClassNotFoundException | SQLException | IOException e) {
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -90,7 +96,13 @@ public class MYSQL {
 			sql.standardQuery(query);
 			System.out.println("SQL Query sucessfull!");
 			MainWindow.setModel();
-		} catch (ClassNotFoundException | SQLException | IOException e) {
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -116,7 +128,13 @@ public class MYSQL {
 				}
 			}
 			System.out.println("SQL Query sucessfull! "+value);
-		} catch (ClassNotFoundException | SQLException | IOException e) {
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -138,7 +156,13 @@ public class MYSQL {
 			sql.standardQuery(query);
 			System.out.println("SQL Query sucessfull!");
 			MainWindow.setModel();
-		} catch (ClassNotFoundException | SQLException | IOException e) {
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -154,7 +178,7 @@ public class MYSQL {
 	 * @throws IOException
 	 */
 	public static TableModel getModel() throws SQLException, ClassNotFoundException, IOException {
-		sql.initialise();
+		//sql.initialise();
 		 ResultSet rs = sql.sqlQuery("select * from students;");  
          ResultSetMetaData md = rs.getMetaData();  
          int columnCount = md.getColumnCount();  
