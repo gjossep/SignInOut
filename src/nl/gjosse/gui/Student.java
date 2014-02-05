@@ -3,6 +3,8 @@ package nl.gjosse.gui;
 import java.util.UUID;
 
 /**
+ * @author room-243-16
+ * @version $Revision: 1.0 $
  */
 public class Student {
 	
@@ -86,8 +88,8 @@ public class Student {
 
 	/**
 	 * Method getFirstName.
-	 * @return String
-	 */
+	
+	 * @return String */
 	public String getFirstName() {
 		return firstName;
 	}
@@ -102,8 +104,8 @@ public class Student {
 	
 	/**
 	 * Method getLastName.
-	 * @return String
-	 */
+	
+	 * @return String */
 	public String getLastName() {
 		return lastName;
 	}
@@ -118,8 +120,8 @@ public class Student {
 
 	/**
 	 * Method getReason.
-	 * @return String
-	 */
+	
+	 * @return String */
 	public String getReason() {
 		return reason;
 	}
@@ -134,8 +136,8 @@ public class Student {
 
 	/**
 	 * Method getDate.
-	 * @return String
-	 */
+	
+	 * @return String */
 	public String getDate() {
 		return date;
 	}
@@ -150,8 +152,8 @@ public class Student {
 
 	/**
 	 * Method getTime.
-	 * @return String
-	 */
+	
+	 * @return String */
 	public String getTime() {
 		return time;
 	}
@@ -166,8 +168,8 @@ public class Student {
 
 	/**
 	 * Method getInOut.
-	 * @return String
-	 */
+	
+	 * @return String */
 	public String getInOut() {
 		return InOut;
 	}
@@ -182,8 +184,8 @@ public class Student {
 
 	/**
 	 * Method getGrade.
-	 * @return int
-	 */
+	
+	 * @return int */
 	public int getGrade() {
 		return grade;
 	}
@@ -198,8 +200,8 @@ public class Student {
 
 	/**
 	 * Method getID.
-	 * @return UUID
-	 */
+	
+	 * @return UUID */
 	public UUID getID() {
 		return id;
 	}

@@ -1,6 +1,8 @@
 package nl.gjosse.mysql;
 
 /**
+ * @author room-243-16
+ * @version $Revision: 1.0 $
  */
 public enum SCHEMA {
 
@@ -9,8 +11,8 @@ public enum SCHEMA {
 
 	/**
 	 * Method toString.
-	 * @return String
-	 */
+	
+	 * @return String */
 	@Override
 	public String toString(){
 		return this.toString().toUpperCase();

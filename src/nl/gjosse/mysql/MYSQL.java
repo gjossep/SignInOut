@@ -18,6 +18,8 @@ import nl.gjosse.gui.Student;
 
 
 /**
+ * @author room-243-16
+ * @version $Revision: 1.0 $
  */
 public class MYSQL {
 
@@ -40,10 +42,10 @@ public class MYSQL {
 
 	/**
 	 * Method checkTable.
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
-	 * @throws IOException
-	 */
+	
+	
+	
+	 * @throws ClassNotFoundException * @throws SQLException * @throws IOException */
 	private static void checkTable() throws ClassNotFoundException, SQLException, IOException {
 		if(!(sql.doesTableExist("students"))) {
 			String query = "CREATE TABLE students(ID int NOT NULL AUTO_INCREMENT, lastName varchar(255), firstName varchar(255), grade varchar(255), advisor varchar(255), date varchar(255), time varchar(255), InOrOut varchar(255), reason varchar(255),uuid varchar(255), PRIMARY KEY (ID))";
@@ -55,8 +57,8 @@ public class MYSQL {
 
 	/**
 	 * Method tryConnection.
-	 * @throws Exception
-	 */
+	
+	 * @throws Exception */
 	private static void tryConnection() throws Exception {
 		boolean initialise = sql.initialise();
 		System.out.println("Connection "+initialise);
@@ -112,8 +114,8 @@ public class MYSQL {
 	 * Method getID.
 	 * @param firstName String
 	 * @param lastName String
-	 * @return UUID
-	 */
+	
+	 * @return UUID */
 	public static UUID getID(String firstName, String lastName) {
 		String value = null;
 		String query = "SELECT * FROM students;";
@@ -168,15 +170,35 @@ public class MYSQL {
 		}
 		
 	}
+	
+	public static void clearTable() {
+		String query = "DELETE FROM students;";
+		System.out.println(query);
+		
+		try {
+			sql.standardQuery(query);
+			System.out.println("SQL Query sucessfull!");
+			MainWindow.setModel();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 
 	/**
 	 * Method getModel.
-	 * @return TableModel
-	 * @throws SQLException
-	 * @throws ClassNotFoundException
-	 * @throws IOException
-	 */
+	
+	
+	
+	
+	 * @return TableModel * @throws SQLException * @throws ClassNotFoundException * @throws IOException */
 	public static TableModel getModel() throws SQLException, ClassNotFoundException, IOException {
 		//sql.initialise();
 		 ResultSet rs = sql.sqlQuery("select * from students;");  
@@ -214,6 +236,7 @@ public class MYSQL {
          
 		return tableModel;
 	}
+
 
 
 

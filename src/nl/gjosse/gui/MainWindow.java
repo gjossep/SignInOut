@@ -9,6 +9,8 @@ import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,11 +22,15 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import nl.gjosse.core.FileHandler;
+import nl.gjosse.core.SignInOut;
 import nl.gjosse.mysql.MYSQL;
 
 import org.jdesktop.swingx.JXTable;
 
 /**
+ * @author room-243-16
+ * @version $Revision: 1.0 $
  */
 public class MainWindow {
 
@@ -47,14 +53,35 @@ public class MainWindow {
 				}
 			}
 		});
+		
+		Timer time = new Timer();
+		time.scheduleAtFixedRate(update, 5000, 10000);
 	}
 
+	static TimerTask update = new TimerTask() {
+
+		@Override
+		public void run() {
+			try {
+				System.out.println("Update");
+				table.setModel(MYSQL.getModel());
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	};
+	
+	
 	/**
 	 * Create the application.
-	
-	
-	
-	 * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  */
+	 * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  * @throws SQLException
+	 * @throws IOException
+	 */
 	public MainWindow() throws ClassNotFoundException, SQLException, IOException {
 		initialize();
 	}
@@ -64,7 +91,9 @@ public class MainWindow {
 	
 	
 	
-	 * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  */
+	 * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  * @throws SQLException
+	 * @throws IOException
+	 */
 	@SuppressWarnings({ "serial", "unchecked" })
 	private void initialize() throws ClassNotFoundException, SQLException, IOException {
 		frame = new JFrame();
@@ -160,16 +189,14 @@ public class MainWindow {
 		});
 		userInputPanel.add(btnRemoveStudent);
 		
-		JButton btnPrintTable = new JButton("Print Table");
+		JButton btnPrintTable = new JButton("Save & Clear");
 		btnPrintTable.setBounds(46, 200, 113, 30);
 		btnPrintTable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				try {
-					table.print();
-				} catch (PrinterException e1) {
-					e1.printStackTrace();
-				}
+				FileHandler.saveTable(table);
+				MYSQL.clearTable();
+				SignInOut.message("Saved table to file \n and cleared the table!");
 			}
 		});
 		userInputPanel.add(btnPrintTable);
@@ -214,10 +241,10 @@ public class MainWindow {
 
 	/**
 	 * Method setModel.
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
-	 * @throws IOException
-	 */
+	
+	
+	
+	 * @throws ClassNotFoundException * @throws SQLException * @throws IOException */
 	public static void setModel() throws ClassNotFoundException, SQLException, IOException {
 		table.setModel(MYSQL.getModel());
 	}

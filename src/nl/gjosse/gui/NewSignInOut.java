@@ -25,6 +25,8 @@ import nl.gjosse.core.FileHandler;
 import nl.gjosse.mysql.MYSQL;
 
 /**
+ * @author Gjosse Zijlstra
+ * @version $Revision: 1.0 $
  */
 public class NewSignInOut {
 
@@ -240,8 +242,8 @@ public class NewSignInOut {
 	/**
 	 * Method getAdvisors.
 	 * @param i int
-	 * @return ComboBoxModel
-	 */
+	
+	 * @return ComboBoxModel */
 	@SuppressWarnings("rawtypes")
 	private ComboBoxModel getAdvisors(int i) {
 		/*
@@ -264,8 +266,8 @@ public class NewSignInOut {
 	
 	/**
 	 * Method getDateAndTime.
-	 * @return String
-	 */
+	
+	 * @return String */
 	private String getDateAndTime() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		//get current date time with Date()
@@ -275,8 +277,8 @@ public class NewSignInOut {
 
 	/**
 	 * Method getTime.
-	 * @return String
-	 */
+	
+	 * @return String */
 	private String getTime() {
 		String dateAndTime = getDateAndTime();
 		String time = dateAndTime.substring(11);
@@ -285,8 +287,8 @@ public class NewSignInOut {
 	
 	/**
 	 * Method getDate.
-	 * @return String
-	 */
+	
+	 * @return String */
 	private String getDate() {
 		String dateAndTime = getDateAndTime();
 		String time = dateAndTime.substring(0, 10);
@@ -304,43 +306,43 @@ public class NewSignInOut {
 	
 	/**
 	 * Method getTextReason.
-	 * @return String
-	 */
+	
+	 * @return String */
 	public static String getTextReason() {
 		return textReason.getText();
 	}
 	/**
 	 * Method getTextFirstName.
-	 * @return String
-	 */
+	
+	 * @return String */
 	public static String getTextFirstName() {
 		return textFirstName.getText();
 	}
 	/**
 	 * Method getInOutBox.
-	 * @return String
-	 */
+	
+	 * @return String */
 	public static String getInOutBox() {
 		return InOutBox.getSelectedItem().toString();
 	}
 	/**
 	 * Method getGradeComboBox.
-	 * @return int
-	 */
+	
+	 * @return int */
 	public static int getGradeComboBox() {
 		return Integer.parseInt(gradeComboBox.getSelectedItem().toString());
 	}
 	/**
 	 * Method getAdvisorBox.
-	 * @return String
-	 */
+	
+	 * @return String */
 	public static String getAdvisorBox() {
 		return advisorBox.getSelectedItem().toString();
 	}
 	/**
 	 * Method getTextLastName.
-	 * @return String
-	 */
+	
+	 * @return String */
 	public static String getTextLastName() {
 		return textLastName.getText();
 	}

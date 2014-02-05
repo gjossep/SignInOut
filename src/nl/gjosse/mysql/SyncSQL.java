@@ -13,6 +13,8 @@ import java.sql.SQLException;
  */
 
 /**
+ * @author room-243-16
+ * @version $Revision: 1.0 $
  */
 public class SyncSQL extends SQLOperations {
 
@@ -51,7 +53,9 @@ public class SyncSQL extends SQLOperations {
 	
 	
 	
-	 * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  */
+	 * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  * @throws SQLException
+	 * @throws IOException
+	 */
 	public void refreshConnection() throws ClassNotFoundException, SQLException, IOException {
 		if (connection == null) {
 			initialise();
@@ -74,8 +78,10 @@ public class SyncSQL extends SQLOperations {
 	
 	
 	
-	 * @return boolean
-	 * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  */
+	
+	 * @return boolean * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  * @throws SQLException
+	 * @throws IOException
+	 */
 	public boolean initialise() throws ClassNotFoundException, SQLException, IOException {
 		if (schema == SCHEMA.MySQL) {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -98,8 +104,9 @@ public class SyncSQL extends SQLOperations {
 	 * @param query
 	
 	
-	 * @throws SQLException
-	 * @throws ClassNotFoundException  * @throws IOException  */
+	
+	 * @throws SQLException * @throws ClassNotFoundException  * @throws IOException  * @throws IOException
+	 */
 	public void standardQuery(String query) throws SQLException, ClassNotFoundException, IOException {
 		this.refreshConnection();
 		super.standardQuery(query, this.connection);
@@ -112,7 +119,10 @@ public class SyncSQL extends SQLOperations {
 	
 	
 	
-	 * @return Whether or not a result has been found in the query. * @throws SQLException * @throws ClassNotFoundException  * @throws IOException  */
+	 * @return Whether or not a result has been found in the query. * @throws SQLException * @throws ClassNotFoundException  * @throws IOException  * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public boolean existanceQuery(String query) throws SQLException, ClassNotFoundException, IOException {
 		this.refreshConnection();
 		return super.sqlQuery(query, this.connection).next();
@@ -129,8 +139,11 @@ public class SyncSQL extends SQLOperations {
 	
 	
 	
-	 * @return ResultSet * @throws SQLException
-	 * @throws ClassNotFoundException  * @throws IOException  */
+	
+	 * @throws ClassNotFoundException  * @throws IOException  * @return ResultSet * @throws SQLException * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public ResultSet sqlQuery(String query) throws SQLException, ClassNotFoundException, IOException {
 		this.refreshConnection();
 		return super.sqlQuery(query, this.connection);
@@ -143,9 +156,10 @@ public class SyncSQL extends SQLOperations {
 	
 	
 	
-	 * @return boolean
-	 * @throws SQLException
-	 * @throws ClassNotFoundException  * @throws IOException  */
+	
+	
+	 * @return boolean * @throws SQLException * @throws ClassNotFoundException  * @throws IOException  * @throws IOException
+	 */
 	public boolean doesTableExist(String table) throws SQLException, ClassNotFoundException, IOException {
 		this.refreshConnection();
 		return super.checkTable(table, this.connection);

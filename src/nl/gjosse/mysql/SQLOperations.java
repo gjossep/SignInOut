@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
+ * @author room-243-16
+ * @version $Revision: 1.0 $
  */
 public class SQLOperations {
 
@@ -14,8 +16,8 @@ public class SQLOperations {
 	 * Method standardQuery.
 	 * @param query String
 	 * @param connection Connection
-	 * @throws SQLException
-	 */
+	
+	 * @throws SQLException */
 	protected synchronized void standardQuery(String query, Connection connection) throws SQLException{
 		Statement statement = connection.createStatement();
 		statement.executeUpdate(query);
@@ -26,9 +28,9 @@ public class SQLOperations {
 	 * Method sqlQuery.
 	 * @param query String
 	 * @param connection Connection
-	 * @return ResultSet
-	 * @throws SQLException
-	 */
+	
+	
+	 * @return ResultSet * @throws SQLException */
 	protected synchronized ResultSet sqlQuery(String query, Connection connection) throws SQLException {
 		Statement statement = connection.createStatement();
 		ResultSet result = statement.executeQuery(query);
@@ -39,9 +41,9 @@ public class SQLOperations {
 	 * Method checkTable.
 	 * @param table String
 	 * @param connection Connection
-	 * @return boolean
-	 * @throws SQLException
-	 */
+	
+	
+	 * @return boolean * @throws SQLException */
 	protected synchronized boolean checkTable(String table, Connection connection) throws SQLException {
 		DatabaseMetaData dbm;
 		dbm = connection.getMetaData();
