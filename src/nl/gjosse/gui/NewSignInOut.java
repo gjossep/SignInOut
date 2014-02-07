@@ -49,6 +49,7 @@ public class NewSignInOut {
 	public static String date;
 	public static UUID id;
 	public static boolean updated = false;
+	public static boolean checked;
 
 	
 	/**
@@ -95,6 +96,7 @@ public class NewSignInOut {
 					id = student.getID();
 					System.out.println(id);
 					updated = true;
+					checked = student.getChecked();
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -195,7 +197,7 @@ public class NewSignInOut {
 						
 						MYSQL.addStudent(student);
 					} else {
-						Student student = new Student(firstName,lastName, NewSignInOut.getGradeComboBox(), NewSignInOut.getAdvisorBox(), date, time, NewSignInOut.getInOutBox(), reason, id);
+						Student student = new Student(firstName,lastName, NewSignInOut.getGradeComboBox(), NewSignInOut.getAdvisorBox(), date, time, NewSignInOut.getInOutBox(), reason, id, checked);
 						NewSignInOut.close();
 						
 						MYSQL.editStudent(student);

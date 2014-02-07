@@ -21,6 +21,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 import nl.gjosse.core.FileHandler;
 import nl.gjosse.core.SignInOut;
@@ -55,7 +57,7 @@ public class MainWindow {
 		});
 		
 		Timer time = new Timer();
-		time.scheduleAtFixedRate(update, 5000, 10000);
+		time.scheduleAtFixedRate(update, 5000, 20000);
 	}
 
 	static TimerTask update = new TimerTask() {
@@ -114,6 +116,29 @@ public class MainWindow {
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		table.setModel(MYSQL.getModel());
 		table.setAutoCreateRowSorter(true);
+		table.getModel().addTableModelListener(new TableModelListener() {
+			
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				int column = e.getColumn();
+				System.out.println(column);
+				if(column == 8) {
+					int selectedRow = e.getLastRow();
+					String lastName = (String) table.getModel().getValueAt(selectedRow, 0);
+					String firstName = (String) table.getModel().getValueAt(selectedRow, 1);
+					int grade = Integer.parseInt((String) table.getModel().getValueAt(selectedRow, 2));
+					String advisor = (String) table.getModel().getValueAt(selectedRow, 3);
+					String inOrOut = (String) table.getModel().getValueAt(selectedRow, 4);
+					String time = (String) table.getModel().getValueAt(selectedRow, 5);
+					String date = (String) table.getModel().getValueAt(selectedRow, 6);
+					String reason = (String) table.getModel().getValueAt(selectedRow, 7);
+					boolean checked = (Boolean) table.getModel().getValueAt(selectedRow, 8);
+					
+					Student s = new Student(firstName, lastName, grade, advisor, date, time, inOrOut, reason, MYSQL.getID(firstName, lastName), checked);
+					MYSQL.setChecked(s);
+				}
+			}
+		});
 		scrollPane.setViewportView(table);
 				
 		
@@ -157,8 +182,9 @@ public class MainWindow {
 					String time = (String) table.getModel().getValueAt(selectedRow, 5);
 					String date = (String) table.getModel().getValueAt(selectedRow, 6);
 					String reason = (String) table.getModel().getValueAt(selectedRow, 7);
+					boolean checked = (Boolean) table.getModel().getValueAt(selectedRow, 8);
 					
-					Student s = new Student(firstName, lastName, grade, advisor, date, time, inOrOut, reason, MYSQL.getID(firstName, lastName));
+					Student s = new Student(firstName, lastName, grade, advisor, date, time, inOrOut, reason, MYSQL.getID(firstName, lastName), checked);
 					NewSignInOut.start(frame, s);
 					
 				}

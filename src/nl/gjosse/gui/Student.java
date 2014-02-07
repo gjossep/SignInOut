@@ -17,6 +17,7 @@ public class Student {
 	public int grade;
 	public String advisor;
 	public UUID id;
+	public boolean checked; 
 	
 	/**
 	 * Constructor for Student.
@@ -38,6 +39,7 @@ public class Student {
 		this.time = time;
 		this.InOut = InOut;
 		this.reason = reason;
+		this.checked = false;
 		
 		System.out.println(firstName);
 		System.out.println(lastName);
@@ -47,6 +49,7 @@ public class Student {
 		System.out.println(time);
 		System.out.println(InOut);
 		System.out.println(reason);
+		System.out.println(checked);
 		
 	    this.id = UUID.randomUUID();
 	}
@@ -63,7 +66,7 @@ public class Student {
 	 * @param reason String
 	 * @param id UUID
 	 */
-	public Student (String firstName, String lastName, int grade, String advisor ,String date, String time, String InOut, String reason, UUID id) {
+	public Student (String firstName, String lastName, int grade, String advisor ,String date, String time, String InOut, String reason, UUID id, boolean checked) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.grade = grade;
@@ -72,15 +75,16 @@ public class Student {
 		this.time = time;
 		this.InOut = InOut;
 		this.reason = reason;
+		this.checked = checked;
 		
-		System.out.println(firstName);
-		System.out.println(lastName);
-		System.out.println(grade);
-		System.out.println(advisor);
-		System.out.println(date);
-		System.out.println(time);
-		System.out.println(InOut);
-		System.out.println(reason);
+//		System.out.println(firstName);
+//		System.out.println(lastName);
+//		System.out.println(grade);
+//		System.out.println(advisor);
+//		System.out.println(date);
+//		System.out.println(time);
+//		System.out.println(InOut);
+//		System.out.println(reason);
 		
 	    this.id = id;
 
@@ -204,6 +208,10 @@ public class Student {
 	 * @return UUID */
 	public UUID getID() {
 		return id;
+	}
+
+	public boolean getChecked() {
+		return checked;
 	}
 	
 	
