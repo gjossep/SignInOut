@@ -12,12 +12,11 @@ import nl.gjosse.mysql.MYSQL;
 public class SignInOut {
 	
 	public static void main(String[] args) {
+		//Start up the program
 		MYSQL.start();
 		MainWindow.start();
 		FileHandler.createFolder();
 		FileHandler.createFiles();
-		
-		
 	}
 	
 

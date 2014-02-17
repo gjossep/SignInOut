@@ -24,7 +24,13 @@ public class FileHandler {
 
 	public static File source = new File(System.getProperty("user.home"),"SignInOut");
 	public static File history = new File(source, "History");
+	
 	public static void createFolder() {
+		/**
+		 * CreateFolder is to create all the required folders for the application to run.
+		 * Pre: Nothing
+		 * Post: Folders are made if they do not exist.
+		 */
 		if(!source.exists()) {
 			source.mkdir();
 		}
@@ -45,13 +51,19 @@ public class FileHandler {
 	
 	 * @return String[] */
 	public static String[] getStringArray(int i) {
+		
+		//Get the array to find the advisor
 		File toFind = new File(source, (i +".txt"));
 		ArrayList<String> array = new ArrayList<String>();
+		
+		//Checks if the folder exists.
 		if(toFind.exists()) {
 			try {
-				@SuppressWarnings("resource")
+				//Start to read the file.
 				BufferedReader fr = new BufferedReader(new FileReader(toFind));
 				String input;
+				
+				//Read each line
 				while((input=fr.readLine())!= null) {
 					array.add(input);
 				}
@@ -60,23 +72,7 @@ public class FileHandler {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else {
-			try {
-				toFind.createNewFile();
-				FileWriter fw = new FileWriter(toFind);
-				BufferedWriter bw = new BufferedWriter(fw);
-				
-				bw.write("John");
-				bw.newLine();
-
-				bw.flush();
-				bw.close();
-				fw.close();
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		} 
 		
 		return (arrayListToArray(array));
 	}
@@ -92,6 +88,7 @@ public class FileHandler {
 	public static String[] arrayListToArray(ArrayList<String> array) {
 		String[] stringArray = new String[array.size()];
 		
+		//For loop to check convert arrayList to array
 		for(int i = 0; i<array.size(); i++) {
 			String s = array.get(i);
 			stringArray[i] = s;

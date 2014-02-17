@@ -199,7 +199,6 @@ public class MYSQL {
 		try {
 			sql.standardQuery(query);
 			System.out.println("SQL Query sucessfull!");
-			MainWindow.setModel();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -220,8 +219,9 @@ public class MYSQL {
 	
 	 * @return TableModel * @throws SQLException * @throws ClassNotFoundException * @throws IOException */
 	public static TableModel getModel() throws SQLException, ClassNotFoundException, IOException {
-		//sql.initialise();
-		 ResultSet rs = sql.sqlQuery("select * from students;");  
+		 sql.initialise();
+		 ResultSet rs = sql.sqlQuery("select * from students;"); 
+		 System.out.println(rs.toString());
          ResultSetMetaData md = rs.getMetaData();  
          int columnCount = md.getColumnCount();  
          Vector<String> columns = new Vector<String>(columnCount);  

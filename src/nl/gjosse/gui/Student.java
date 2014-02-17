@@ -77,15 +77,6 @@ public class Student {
 		this.reason = reason;
 		this.checked = checked;
 		
-//		System.out.println(firstName);
-//		System.out.println(lastName);
-//		System.out.println(grade);
-//		System.out.println(advisor);
-//		System.out.println(date);
-//		System.out.println(time);
-//		System.out.println(InOut);
-//		System.out.println(reason);
-		
 	    this.id = id;
 
 	}
