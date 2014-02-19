@@ -8,14 +8,30 @@ import org.jdesktop.swingx.JXTable;
 import nl.gjosse.gui.Student;
 import nl.gjosse.mysql.MYSQL;
 
+/**
+ * @author Gjosse Zijlstra
+ * @version $Revision: 1.0 $
+ */
 public class EventHandler implements TableModelListener {
 
 	JXTable table;
 	
+	/**
+	 * Constructor for EventHandler.
+	 * @param table JXTable
+	 */
 	public EventHandler(JXTable table) {
 		this.table = table;
 	}
 
+	/**
+	 * Method tableChanged.
+	 * Pre: A TableModelEvent must be given.
+	 * Post: The checked option is changed on the entry clicked.
+	 * 
+	 * @param e TableModelEvent
+	 * @see javax.swing.event.TableModelListener#tableChanged(TableModelEvent)
+	 */
 	@Override
 	public void tableChanged(TableModelEvent e) {
 		//Get the column it gets changed.

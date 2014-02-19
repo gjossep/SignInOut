@@ -15,6 +15,8 @@ public class SignInOut {
 		//Start up the program
 		MYSQL.start();
 		MainWindow.start();
+		
+		//Create the files and folders.
 		FileHandler.createFolder();
 		FileHandler.createFiles();
 	}
@@ -25,6 +27,7 @@ public class SignInOut {
 	 * A method to display a warning the user.
 	 * Pre: A code of what kind of warning is needed.
 	 * Post: A dialog window pops up.
+	 * 
 	 * @param code int
 	 */
 	public static void warning(int code) {
@@ -40,6 +43,7 @@ public class SignInOut {
 	 * A method to display a error the user and then quit.
 	 * Pre: A code of what kind of error is needed.
 	 * Post: A dialog is showen to the user.
+	 * 
 	 * @param code int
 	 */
 	public static void error(int code) {
@@ -55,6 +59,7 @@ public class SignInOut {
 	 * A method to display a message to the user is displayed
 	 * Pre: A String msg must be given.
 	 * Post: A dialog wit the message is showen.
+	 * 
 	 * @param msg String
 	 */
 	public static void message(String msg) {

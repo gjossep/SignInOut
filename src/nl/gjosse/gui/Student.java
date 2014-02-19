@@ -83,7 +83,9 @@ public class Student {
 
 	/**
 	 * Method getFirstName.
-	
+	 * Pre: Nothing
+	 * Post: the First name is returned.
+	 * 
 	 * @return String */
 	public String getFirstName() {
 		return firstName;
@@ -91,6 +93,9 @@ public class Student {
 
 	/**
 	 * Method setFirstName.
+	 * Pre: A string with first name must be given.
+	 * Post: The firstname is set to the given string.
+	 * 
 	 * @param name String
 	 */
 	public void setFirstName(String name) {
@@ -99,7 +104,9 @@ public class Student {
 	
 	/**
 	 * Method getLastName.
-	
+	 * Pre: Nothing
+	 * Post: Returns the last name
+	 * 
 	 * @return String */
 	public String getLastName() {
 		return lastName;
@@ -107,6 +114,9 @@ public class Student {
 
 	/**
 	 * Method setLastName.
+	 * Pre: A last name must be given.
+	 * Post: The last name is set to given string
+	 * 
 	 * @param name String
 	 */
 	public void setLastName(String name) {
@@ -115,7 +125,9 @@ public class Student {
 
 	/**
 	 * Method getReason.
-	
+	 * Pre: Nothing
+	 * Post: Returns the reason
+	 * 
 	 * @return String */
 	public String getReason() {
 		return reason;
@@ -123,6 +135,8 @@ public class Student {
 
 	/**
 	 * Method setReason.
+	 * Pre: A reason must be given.
+	 * Post: The reason is set to given string
 	 * @param reason String
 	 */
 	public void setReason(String reason) {
@@ -131,7 +145,9 @@ public class Student {
 
 	/**
 	 * Method getDate.
-	
+	 * Pre: Nothing
+	 * Post: Returns the date.
+	 * 
 	 * @return String */
 	public String getDate() {
 		return date;
@@ -139,6 +155,9 @@ public class Student {
 
 	/**
 	 * Method setDate.
+	 * Pre: A date must be given.
+	 * Post: The date is set to the given string.
+	 * 
 	 * @param date String
 	 */
 	public void setDate(String date) {
@@ -147,7 +166,9 @@ public class Student {
 
 	/**
 	 * Method getTime.
-	
+	 * Pre: Nothing
+	 * Post: Returns the time
+	 * 
 	 * @return String */
 	public String getTime() {
 		return time;
@@ -155,6 +176,8 @@ public class Student {
 
 	/**
 	 * Method setTime.
+	 * Pre: A string time must be given.
+	 * Post: The time is set to the given string
 	 * @param time String
 	 */
 	public void setTime(String time) {
@@ -163,7 +186,9 @@ public class Student {
 
 	/**
 	 * Method getInOut.
-	
+	 * Pre: Nothing
+	 * Post: returns the InOut 
+	 * 
 	 * @return String */
 	public String getInOut() {
 		return InOut;
@@ -171,6 +196,9 @@ public class Student {
 
 	/**
 	 * Method setInOut.
+	 * Pre: A string inOut must be given
+	 * Post: the InOut is set to the given string.
+	 * 
 	 * @param inOut String
 	 */
 	public void setInOut(String inOut) {
@@ -179,7 +207,9 @@ public class Student {
 
 	/**
 	 * Method getGrade.
-	
+	 * Pre: Nothing
+	 * Post: return grade
+	 * 
 	 * @return int */
 	public int getGrade() {
 		return grade;
@@ -187,6 +217,9 @@ public class Student {
 
 	/**
 	 * Method setGrade.
+	 * Pre: A int grade must be given
+	 * Post: The grade is set to the given int
+	 * 
 	 * @param grade int
 	 */
 	public void setGrade(int grade) {
@@ -195,12 +228,20 @@ public class Student {
 
 	/**
 	 * Method getID.
-	
+	 * Pre: Nothing
+	 * Post: returns the UUID
+	 * 
 	 * @return UUID */
 	public UUID getID() {
 		return id;
 	}
 
+	/**
+	 * Method getChecked.
+	 * Pre: Nothing
+	 * Post: returns the checked value
+	 * 
+	 * @return boolean */
 	public boolean getChecked() {
 		return checked;
 	}

@@ -1,6 +1,5 @@
 package nl.gjosse.mysql;
 
-
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -14,8 +13,6 @@ import javax.swing.table.TableModel;
 import nl.gjosse.core.SignInOut;
 import nl.gjosse.gui.MainWindow;
 import nl.gjosse.gui.Student;
-
-
 
 /**
  * @author room-243-16
@@ -42,9 +39,6 @@ public class MYSQL {
 
 	/**
 	 * Method checkTable.
-	
-	
-	
 	 * @throws ClassNotFoundException * @throws SQLException * @throws IOException */
 	private static void checkTable() throws ClassNotFoundException, SQLException, IOException {
 		if(!(sql.doesTableExist("students"))) {
@@ -57,7 +51,6 @@ public class MYSQL {
 
 	/**
 	 * Method tryConnection.
-	
 	 * @throws Exception */
 	private static void tryConnection() throws Exception {
 		boolean initialise = sql.initialise();
@@ -114,7 +107,6 @@ public class MYSQL {
 	 * Method getID.
 	 * @param firstName String
 	 * @param lastName String
-	
 	 * @return UUID */
 	public static UUID getID(String firstName, String lastName) {
 		String value = null;
@@ -213,10 +205,6 @@ public class MYSQL {
 
 	/**
 	 * Method getModel.
-	
-	
-	
-	
 	 * @return TableModel * @throws SQLException * @throws ClassNotFoundException * @throws IOException */
 	public static TableModel getModel() throws SQLException, ClassNotFoundException, IOException {
 		 sql.initialise();
@@ -262,15 +250,6 @@ public class MYSQL {
      				return columnTypes[columnIndex];
      			}
          };  
-         
-         
 		return tableModel;
 	}
-
-
-
-
-
-
-	
 }

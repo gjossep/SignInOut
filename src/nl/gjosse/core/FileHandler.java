@@ -25,12 +25,12 @@ public class FileHandler {
 	public static File source = new File(System.getProperty("user.home"),"SignInOut");
 	public static File history = new File(source, "History");
 	
+	/**Method createFolder
+	 * A method to create all folders if they dont exist
+	 * Pre: Null
+	 * Post: The Folders are made
+	 */
 	public static void createFolder() {
-		/**
-		 * CreateFolder is to create all the required folders for the application to run.
-		 * Pre: Nothing
-		 * Post: Folders are made if they do not exist.
-		 */
 		if(!source.exists()) {
 			source.mkdir();
 		}
@@ -45,8 +45,10 @@ public class FileHandler {
 	/**
 	 * Method getStringArray.
 	 * This method gets an array out of the file with advisors names.
+	 * 
 	 * Pre: the amount of advisors must be known
 	 * Post: A Array is created
+	 * 
 	 * @param i int
 	
 	 * @return String[] */
@@ -82,8 +84,8 @@ public class FileHandler {
 	 * This method converts a ArrayList into a normal array.
 	 * Pre: A ArrayList must be given.
 	 * Post: A String array is created.
+	 * 
 	 * @param array ArrayList<String>
-	
 	 * @return String[] */
 	public static String[] arrayListToArray(ArrayList<String> array) {
 		String[] stringArray = new String[array.size()];
@@ -149,6 +151,7 @@ public class FileHandler {
 	 * A method to save the table into a excel file.
 	 * Pre: A table must be given.
 	 * Post: The file is writen.
+	 * 
 	 * @param table JXTable
 	 */
 	public static void saveTable(JXTable table) {
@@ -189,6 +192,7 @@ public class FileHandler {
 	 * A method to get the date.
 	 * Pre: Null
 	 * Post: The date is returned.
+	 * 
 	 * @return String
 	 */
 	private static String getDate() {

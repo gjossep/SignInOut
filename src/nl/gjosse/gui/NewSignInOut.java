@@ -34,7 +34,6 @@ public class NewSignInOut {
 
 	/**
 	 * Launch the application.
-	
 	 */
 	
 	public static JFrame other;
@@ -54,6 +53,7 @@ public class NewSignInOut {
 	
 	/**
 	 * Method start.
+	 * A method to start the application
 	 * @param frame2 JFrame
 	 */
 	public static void start(JFrame frame2) {
@@ -243,8 +243,10 @@ public class NewSignInOut {
 
 	/**
 	 * Method getAdvisors.
+	 * Pre: A grade needs to be given
+	 * Post: the advisors of that grade is returned.
+	 * 
 	 * @param i int
-	
 	 * @return ComboBoxModel */
 	@SuppressWarnings("rawtypes")
 	private ComboBoxModel getAdvisors(int i) {
@@ -268,7 +270,9 @@ public class NewSignInOut {
 	
 	/**
 	 * Method getDateAndTime.
-	
+	 * Pre: Nothing
+	 * Post: Returns the date and time
+	 * 
 	 * @return String */
 	private String getDateAndTime() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -279,7 +283,9 @@ public class NewSignInOut {
 
 	/**
 	 * Method getTime.
-	
+	 * Pre: Nothing
+	 * Post: Returns the time
+	 * 
 	 * @return String */
 	private String getTime() {
 		String dateAndTime = getDateAndTime();
@@ -289,7 +295,9 @@ public class NewSignInOut {
 	
 	/**
 	 * Method getDate.
-	
+	 * Pre: Nothing
+	 * Post: Returns the date
+	 * 
 	 * @return String */
 	private String getDate() {
 		String dateAndTime = getDateAndTime();
@@ -297,53 +305,70 @@ public class NewSignInOut {
 		return time;
 	}
 	
+	/**
+	 * Method error.
+	 * Pre: Nothing
+	 * Post: Runs a error message that not all fields are filled out.
+	 */
 	public static void error() {
-		JOptionPane.showMessageDialog(frame,
-			    "Not all fields are filled out!",
-			    "Error",
-			    JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(frame,"Not all fields are filled out!", "Error",JOptionPane.ERROR_MESSAGE);
 	}
-	
-	
 	
 	/**
 	 * Method getTextReason.
-	
+	 * Pre: Nothing
+	 * Post: The reason is returned.
+	 * 
 	 * @return String */
 	public static String getTextReason() {
 		return textReason.getText();
 	}
+	
 	/**
 	 * Method getTextFirstName.
-	
+	 * Pre: Nothing
+	 * Post: The first name is returned
+	 * 
 	 * @return String */
 	public static String getTextFirstName() {
 		return textFirstName.getText();
 	}
+	
 	/**
 	 * Method getInOutBox.
-	
+	 * Pre: Nothing
+	 * Post: the In/out selection is returned
+	 * 
 	 * @return String */
 	public static String getInOutBox() {
 		return InOutBox.getSelectedItem().toString();
 	}
+	
 	/**
 	 * Method getGradeComboBox.
-	
+	 * Pre: Nothing
+	 * Post: Returns the grade
+	 * 
 	 * @return int */
 	public static int getGradeComboBox() {
 		return Integer.parseInt(gradeComboBox.getSelectedItem().toString());
 	}
+	
 	/**
 	 * Method getAdvisorBox.
-	
+	 * Pre: Nothing
+	 * Post: Returns the advisor
+	 * 
 	 * @return String */
 	public static String getAdvisorBox() {
 		return advisorBox.getSelectedItem().toString();
 	}
+	
 	/**
 	 * Method getTextLastName.
-	
+	 * Pre: Nothing
+	 * Post: Returns the last name
+	 * 
 	 * @return String */
 	public static String getTextLastName() {
 		return textLastName.getText();

@@ -32,7 +32,7 @@ import nl.gjosse.mysql.MYSQL;
 import org.jdesktop.swingx.JXTable;
 
 /**
- * @author gjosse
+ * @author Gjosse Zijlstra
  * @version $Revision: 1.0 $
  */
 public class MainWindow {
@@ -41,7 +41,7 @@ public class MainWindow {
 	private static JXTable table;
 	private JTextField searchField;
 
-	/**
+	/*
 	 * Launch the application.
 	 */
 	public static void start() {
@@ -91,28 +91,33 @@ public class MainWindow {
 
 	/**
 	 * Initialize the contents of the frame.
-	
-	
-	
+	 * Pre: Nothing
+	 * Post: A window is created
+	 * 
 	 * @throws ClassNotFoundException  * @throws SQLException  * @throws IOException  * @throws SQLException
 	 * @throws IOException
 	 */
 	@SuppressWarnings({ "serial", "unchecked" })
 	private void initialize() throws ClassNotFoundException, SQLException, IOException {
+		
+		//Set up the frame
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		//Set up the Jpanel for the table
 		JPanel tablePanel = new JPanel();
 		tablePanel.setBounds(0, 0, 570, 462);
 		frame.getContentPane().add(tablePanel);
 		tablePanel.setLayout(null);
 		
+		//Insert a scrollPane for the table to be in
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(0, 0, 570, 462);
 		tablePanel.add(scrollPane);
 		
+		//Create a new JXtable and add it to the scrolpane
 		table = new JXTable();
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		table.setModel(MYSQL.getModel());
@@ -122,12 +127,13 @@ public class MainWindow {
 		
 		scrollPane.setViewportView(table);
 				
-		
+		//Set up the userInput panel.
 		JPanel userInputPanel = new JPanel();
 		userInputPanel.setBounds(569, 0, 215, 462);
 		frame.getContentPane().add(userInputPanel);
 		userInputPanel.setLayout(null);
 		
+		//Create some labels
 		JLabel lblNewLabel = new JLabel("Sign In/Out");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -138,6 +144,7 @@ public class MainWindow {
 		separator.setBounds(10, 25, 195, 10);
 		userInputPanel.add(separator);
 		
+		//Set up the button for a new Sign In/Out
 		JButton btnSignInout = new JButton("Sign In/Out");
 		btnSignInout.addMouseListener(new MouseAdapter() {
 			@Override
@@ -149,6 +156,7 @@ public class MainWindow {
 		btnSignInout.setBounds(46, 36, 113, 30);
 		userInputPanel.add(btnSignInout);
 		
+		//Set up the button to edit a entry
 		JButton btnEditData = new JButton("Edit data");
 		btnEditData.addMouseListener(new MouseAdapter() {
 			
@@ -176,6 +184,7 @@ public class MainWindow {
 		btnEditData.setBounds(46, 68, 113, 30);
 		userInputPanel.add(btnEditData);
 		
+		//Set up the button to remove a entry
 		JButton btnRemoveStudent = new JButton("Remove entry");
 		btnRemoveStudent.setBounds(46, 100, 113, 30);
 		btnRemoveStudent.addMouseListener(new MouseAdapter() {
@@ -198,6 +207,7 @@ public class MainWindow {
 		});
 		userInputPanel.add(btnRemoveStudent);
 		
+		//Create the button to save and clear the screen.
 		JButton btnPrintTable = new JButton("Save & Clear");
 		btnPrintTable.setBounds(46, 200, 113, 30);
 		btnPrintTable.addMouseListener(new MouseAdapter() {
@@ -210,7 +220,7 @@ public class MainWindow {
 		});
 		userInputPanel.add(btnPrintTable);
 		
-		
+		//Set up the search fields and labels.
 		JLabel lblSearch = new JLabel("Search:");
 		lblSearch.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblSearch.setBounds(10, 255, 46, 14);
@@ -227,6 +237,7 @@ public class MainWindow {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Search the table for the indicated field
 				searchTable(searchField.getText());
 			}
 		});
@@ -235,6 +246,10 @@ public class MainWindow {
 
 	/**
 	 * Method searchTable.
+	 * A method to search the table
+	 * Pre: A string needs to be given
+	 * Post: A entry in the table is selected 
+	 * 
 	 * @param toFind String
 	 */
 	protected void searchTable(String toFind) {
@@ -250,6 +265,10 @@ public class MainWindow {
 
 	/**
 	 * Method setModel.	
+	 * A Method to set the model
+	 * Pre: Nothing
+	 * Post: The model is loaded from the database and given to the table.
+	 * 
 	 * @throws ClassNotFoundException * @throws SQLException * @throws IOException */
 	public static void setModel() throws ClassNotFoundException, SQLException, IOException {
 		table.setModel(MYSQL.getModel());
